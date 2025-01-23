@@ -10,3 +10,19 @@ else
 fi
 
 # Do not change code above this line. Use the PSQL variable above to query your database.
+
+# Drop tables if they exist
+echo "$($PSQL "DROP TABLE IF EXISTS games, teams CASCADE;")"
+
+# Create teams table
+echo $($PSQL "CREATE TABLE teams(team_id SERIAL PRIMARY KEY, name VARCHAR NOT NULL UNIQUE)")
+
+# Create teams table
+echo $($PSQL "CREATE TABLE games(
+  game_id SERIAL UNIQUE PRIMARY KEY, 
+  year INT NOT NULL, 
+  round VARCHAR NOT NULL,
+  winner_id INT NOT NULL REFERENCES teams(team_id),
+  opponent_id INT NOT NULL REFERENCES teams(team_id),
+  winner_goals INT NOT NULL,
+  opponent_goals INT NOT NULL)")
