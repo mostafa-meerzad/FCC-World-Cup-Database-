@@ -26,3 +26,19 @@ echo $($PSQL "CREATE TABLE games(
   opponent_id INT NOT NULL REFERENCES teams(team_id),
   winner_goals INT NOT NULL,
   opponent_goals INT NOT NULL)")
+
+# Read data from the source
+while IFS="," read -r _ _ winner opponent _ _; do
+  # Insert into "teams" table
+
+  # Insert winner into the teams table
+  INSERT_RESULT=$($PSQL "INSERT INTO teams(name) VALUES('$winner') ON CONFLICT (name) DO NOTHING")
+  if [[ $INSERT_RESULT == "INSERT 0 1" ]]; then
+    echo "Inserted team: $winner"
+  fi
+  # Insert opponent into the teams table
+  INSERT_RESULT=$($PSQL "INSERT INTO teams(name) VALUES('$opponent') ON CONFLICT (name) DO NOTHING")
+  if [[ $INSERT_RESULT == "INSERT 0 1" ]]; then
+    echo "Inserted team: $opponent"
+  fi
+done < <(tail -n +2 games.csv)
