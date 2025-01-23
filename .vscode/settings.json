@@ -58,7 +58,7 @@
   "update.showReleaseNotes": false,
   "workbench.enableExperiments": false,
   "workbench.startupEditor": "none",
-  "workbench.colorTheme": "Tomorrow Night Blue",
+  "workbench.colorTheme": "One Dark Pro",
   "workbench.colorCustomizations": {
     "[Tomorrow Night Blue]": {
       "menu.background": "#0a0a23",
@@ -89,7 +89,7 @@
       "panelTitle.activeBorder": "#f5f6f7"
     }
   },
-  "workbench.iconTheme": null,
+  "workbench.iconTheme": "eq-material-theme-icons",
   "workbench.statusBar.visible": false,
   "workbench.tips.enabled": false,
   "workbench.tree.renderIndentGuides": "none",
